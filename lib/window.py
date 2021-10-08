@@ -6,7 +6,7 @@ from functools import partial
 
 class ShopWindow(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, test_data=None):
         super().__init__()
 
         with open('data/parameters.json', 'r', encoding='utf-8') as file:
@@ -15,8 +15,11 @@ class ShopWindow(QMainWindow):
         self.setWindowTitle(self.param['window_title'])
         self.resize(self.param['sizeX'], self.param['sizeY'])
 
-        with open('data/data.json', 'r', encoding='utf-8') as file:
-            self.data = json.load(file)['data']
+        if test_data is None:
+            with open('data/data.json', 'r', encoding='utf-8') as file:
+                self.data = json.load(file)['data']
+        else:
+            self.data = test_data
 
         self.label = QLabel(self.param['main_label']['text'], self)
         self.label.setGeometry(0, 0, 1000, 300)
@@ -42,7 +45,6 @@ class ShopWindow(QMainWindow):
 
     def set_buttons(self):
         arr = sorted(self.buttons.items(), key=self.buttons_sorting_key)
-        print(arr)
         for i in range(len(arr)):
             arr[i][1].setGeometry(i * 100, 0, 100, 50)
 
