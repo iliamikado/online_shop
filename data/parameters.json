@@ -11,5 +11,7 @@
       "названию",
       "количеству"
     ]
-  }
+  },
+  "server_address": "localhost",
+  "server_port": 8000
 }

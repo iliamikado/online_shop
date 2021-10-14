@@ -1,6 +1,5 @@
 from flask import Flask, request
 import json
-import requests
 
 app = Flask(__name__)
 
@@ -45,4 +44,6 @@ def stats():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='8000', debug=True)
+    with open('../data/parameters.json', 'r', encoding='utf-8') as f:
+        config = json.load(f)
+    app.run(host=config['server_address'], port=config['server_port'], debug=True)

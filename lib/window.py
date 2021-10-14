@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton
 import json
+import requests
 
 from functools import partial
 
@@ -16,8 +17,8 @@ class ShopWindow(QMainWindow):
         self.resize(self.param['sizeX'], self.param['sizeY'])
 
         if test_data is None:
-            with open('data/data.json', 'r', encoding='utf-8') as file:
-                self.data = json.load(file)['data']
+            self.data = requests.get('http://' + self.param['server_address'] + ':'
+                                     + str(self.param['server_port']) + '/api/stats').json()['data']
         else:
             self.data = test_data
 
@@ -40,6 +41,10 @@ class ShopWindow(QMainWindow):
     def on_click(self, good):
         if self.data[good] > 0:
             self.data[good] -= 1
+        request = requests.post('http://' + self.param['server_address'] + ':'
+                                + str(self.param['server_port']) + '/api/reserve',
+                                data={'username': 'Ilia', 'item': good})
+        print(request.text)
         self.buttons[good].setText(good + '\n' + 'Осталось: ' + str(self.data[good]))
         self.set_buttons()
 
