@@ -32,7 +32,7 @@ def reserve():
 
     with open('data.json', 'w', encoding='utf-8') as file:
         json.dump(statistic, file)
-    return 'new stats here'
+    return 'success'
 
 
 @app.route("/api/stats", methods=['GET'])

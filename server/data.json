@@ -1,1 +1,1 @@
-{"data": {"Item 1": 10, "Item 2": 9, "Item 3": 17}, "users": [{"name": "Peter", "Item 2": 3}, {"name": "Kate", "Item 3": 1}, {"name": "Ilia", "Item 3": 2, "Item 2": 3}]}
+{"data": {"Item 1": 9, "Item 2": 9, "Item 3": 16}, "users": [{"name": "Peter", "Item 2": 3}, {"name": "Kate", "Item 3": 1}, {"name": "Ilia", "Item 3": 3, "Item 2": 3, "Item 1": 1}]}
