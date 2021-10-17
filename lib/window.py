@@ -1,16 +1,18 @@
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton
 import json
 import requests
+import os
+
 
 from functools import partial
 
 
 class ShopWindow(QMainWindow):
 
-    def __init__(self, test_data=None):
+    def __init__(self, test_data=None, data_path=''):
         super().__init__()
 
-        with open('data/parameters.json', 'r', encoding='utf-8') as file:
+        with open(os.path.join(data_path, 'data/parameters.json'), 'r', encoding='utf-8') as file:
             self.param = json.load(file)
 
         self.setWindowTitle(self.param['window_title'])
